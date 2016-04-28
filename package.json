@@ -45,5 +45,8 @@
     "chai": "^3.5.0",
     "multiaddr": "^1.4.1",
     "pre-commit": "^1.1.2"
-  }
+  },
+  "contributors": [
+    "David Dias <daviddias.p@gmail.com>"
+  ]
 }
