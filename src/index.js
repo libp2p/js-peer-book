@@ -1,3 +1,5 @@
+'use strict'
+
 const bs58 = require('bs58')
 
 module.exports = PeerBook
