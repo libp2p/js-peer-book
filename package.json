@@ -57,9 +57,7 @@
           "node-forge": "../../../node_modules/peer-id/vendor/forge.bundle.js"
         }
       },
-      "externals": {
-      }
+      "externals": {}
     }
   }
-
 }
