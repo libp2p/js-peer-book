@@ -14,7 +14,7 @@ function PeerBook () {
   this.put = (peerInfo, replace) => {
     if (peers[peerInfo.id.toB58String()] && !replace) {
       // peerInfo.replace merges by default
-      peers[peerInfo.id.toB58String()].multiaddr.replace(peerInfo.multiaddrs)
+      peers[peerInfo.id.toB58String()].multiaddr.replace([], peerInfo.multiaddrs)
     }
     peers[peerInfo.id.toB58String()] = peerInfo
   }
