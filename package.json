@@ -41,9 +41,9 @@
     "bs58": "^3.0.0"
   },
   "devDependencies": {
-    "aegir": "^3.1.0",
+    "aegir": "^6.0.0",
     "chai": "^3.5.0",
-    "multiaddr": "^1.4.1",
+    "multiaddr": "^2.0.2",
     "peer-info": "^0.7.0",
     "pre-commit": "^1.1.2"
   },
