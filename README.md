@@ -29,9 +29,9 @@ var PeerBook = require('peer-book')
 Loading this module through a script tag will make the `PeerBook` obj available in the global namespace.
 
 ```html
-<script src="https://unpkg.com/peer-book/dist/index.min.js"></script>
+<script src="/peer-book@0.3.0/dist/index.min.js"></script>
 <!-- OR -->
-<script src="https://unpkg.com/peer-book/dist/index.js"></script>
+<script src="/peer-book@0.3.0/dist/index.js"></script>
 ```
 
 # Usage
