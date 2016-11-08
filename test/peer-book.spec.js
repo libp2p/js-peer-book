@@ -2,9 +2,11 @@
 'use strict'
 
 const expect = require('chai').expect
-const PeerBook = require('../src')
 const Multiaddr = require('multiaddr')
 const PeerInfo = require('peer-info')
+const async = require('async')
+
+const PeerBook = require('../src')
 
 describe('peer-book', function () {
   this.timeout(50000)
@@ -12,6 +14,27 @@ describe('peer-book', function () {
   let p1
   let p2
   let p3
+  let p4
+
+  before((done) => {
+    async.parallel([
+      (cb) => PeerInfo.create(cb),
+      (cb) => PeerInfo.create(cb),
+      (cb) => PeerInfo.create(cb),
+      (cb) => PeerInfo.create(cb)
+    ], (err, infos) => {
+      if (err) {
+        return done(err)
+      }
+
+      p1 = infos[0]
+      p2 = infos[1]
+      p3 = infos[2]
+      p4 = infos[3]
+
+      done()
+    })
+  })
 
   it('create PeerBook', (done) => {
     pb = new PeerBook()
@@ -20,10 +43,6 @@ describe('peer-book', function () {
   })
 
   it('put peerInfo', (done) => {
-    p1 = new PeerInfo()
-    p2 = new PeerInfo()
-    p3 = new PeerInfo()
-
     pb.put(p1)
     pb.put(p2)
     pb.put(p3)
@@ -45,9 +64,8 @@ describe('peer-book', function () {
   })
 
   it('getByB58String non existent', (done) => {
-    const peer = new PeerInfo()
     try {
-      pb.getByB58String(peer.id.toB58String())
+      pb.getByB58String(p4.id.toB58String())
     } catch (err) {
       expect(err).to.exist
       done()
@@ -62,9 +80,8 @@ describe('peer-book', function () {
   })
 
   it('getByMultihash non existent', (done) => {
-    const peer = new PeerInfo()
     try {
-      pb.getByMultihash(peer.id.toBytes())
+      pb.getByMultihash(p4.id.toBytes())
     } catch (err) {
       expect(err).to.exist
       done()
