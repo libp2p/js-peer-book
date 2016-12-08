@@ -12,15 +12,16 @@
     "test": "aegir-test",
     "test:node": "aegir-test node",
     "test:browser": "aegir-test browser",
-    "release": "aegir-release",
-    "release-minor": "aegir-release --type minor",
-    "release-major": "aegir-release --type major",
+    "docs": "aegir-docs",
+    "release": "aegir-release --docs",
+    "release-minor": "aegir-release --type minor --docs",
+    "release-major": "aegir-release --type major --docs",
     "coverage": "aegir-coverage",
     "coverage-publish": "aegir-coverage publish"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diasdavid/js-peer-book.git"
+    "url": "git+https://github.com/libp2p/js-peer-book.git"
   },
   "pre-commit": [
     "lint",
@@ -33,18 +34,18 @@
   "author": "David Dias <daviddias@ipfs.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diasdavid/js-peer-book/issues"
+    "url": "https://github.com/libp2p/js-peer-book/issues"
   },
-  "homepage": "https://github.com/diasdavid/js-peer-book#readme",
+  "homepage": "https://github.com/libp2p/js-peer-book#readme",
   "dependencies": {
-    "bs58": "^3.0.0"
+    "bs58": "^3.1.0"
   },
   "devDependencies": {
-    "aegir": "^9.1.1",
-    "async": "^2.1.2",
+    "aegir": "^9.2.0",
+    "async": "^2.1.4",
     "chai": "^3.5.0",
-    "multiaddr": "^2.0.3",
-    "peer-info": "^0.8.0",
+    "multiaddr": "^2.1.1",
+    "peer-info": "^0.8.1",
     "pre-commit": "^1.1.3"
   },
   "contributors": [
