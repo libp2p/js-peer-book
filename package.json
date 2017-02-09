@@ -48,6 +48,9 @@
     "pre-commit": "^1.2.2"
   },
   "contributors": [
-    "David Dias <daviddias.p@gmail.com>"
+    "David Dias <daviddias.p@gmail.com>",
+    "Friedel Ziegelmayer <dignifiedquire@gmail.com>",
+    "greenkeeperio-bot <support@greenkeeper.io>",
+    "npmcdn-to-unpkg-bot <npmcdn-to-unpkg-bot@users.noreply.github.com>"
   ]
 }
