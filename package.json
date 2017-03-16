@@ -42,7 +42,7 @@
   "devDependencies": {
     "peer-info": "~0.8.3",
     "multiaddr": "^2.2.1",
-    "aegir": "^10.0.0",
+    "aegir": "^11.0.0",
     "async": "^2.1.4",
     "chai": "^3.5.0",
     "pre-commit": "^1.2.2"
