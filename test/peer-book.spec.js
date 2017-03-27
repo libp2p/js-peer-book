@@ -1,7 +1,10 @@
 /* eslint-env mocha */
 'use strict'
 
-const expect = require('chai').expect
+const chai = require('chai')
+const dirtyChai = require('dirty-chai')
+const expect = chai.expect
+chai.use(dirtyChai)
 const Multiaddr = require('multiaddr')
 const PeerInfo = require('peer-info')
 const async = require('async')
@@ -38,7 +41,7 @@ describe('peer-book', function () {
 
   it('create PeerBook', () => {
     pb = new PeerBook()
-    expect(pb).to.exist
+    expect(pb).to.exist()
   })
 
   it('put peerInfo', () => {
@@ -67,7 +70,7 @@ describe('peer-book', function () {
     try {
       pb.getByB58String(p4.id.toB58String())
     } catch (err) {
-      expect(err).to.exist
+      expect(err).to.exist()
       done()
     }
   })
@@ -82,7 +85,7 @@ describe('peer-book', function () {
     try {
       pb.getByMultihash(p4.id.toBytes())
     } catch (err) {
-      expect(err).to.exist
+      expect(err).to.exist()
       done()
     }
   })
@@ -93,7 +96,7 @@ describe('peer-book', function () {
     try {
       pb.getByB58String(p1Id)
     } catch (err) {
-      expect(err).to.exist
+      expect(err).to.exist()
       done()
     }
   })
@@ -104,7 +107,7 @@ describe('peer-book', function () {
     try {
       pb.getByMultihash(p1Id)
     } catch (err) {
-      expect(err).to.exist
+      expect(err).to.exist()
       done()
     }
   })
