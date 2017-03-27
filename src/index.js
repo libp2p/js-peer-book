@@ -23,6 +23,16 @@ function PeerBook () {
     return peers
   }
 
+  /**
+   * Get the info to the given PeerId.
+   *
+   * @param {PeerId} id
+   * @returns {PeerInfo}
+   */
+  this.get = (id) => {
+    return this.getByB58String(id.toB58String())
+  }
+
   this.getByB58String = (b58String) => {
     const peerInfo = peers[b58String]
     if (peerInfo) {
@@ -45,6 +55,17 @@ function PeerBook () {
   this.removeByMultihash = (multihash) => {
     const b58multihash = bs58.encode(multihash).toString()
     this.removeByB58String(b58multihash)
+  }
+
+  /**
+   * Return all multiaddrs for a given PeerId.
+   *
+   * @param {PeerId} id
+   * @returns {Array<Multiaddr>}
+   */
+  this.getAddrs = (id) => {
+    const info = this.get(id)
+    return info.multiaddrs
   }
 
   // TODO serialize PeerBook into MerkleDAG Objects

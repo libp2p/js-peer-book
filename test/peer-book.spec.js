@@ -36,31 +36,31 @@ describe('peer-book', function () {
     })
   })
 
-  it('create PeerBook', (done) => {
+  it('create PeerBook', () => {
     pb = new PeerBook()
     expect(pb).to.exist
-    done()
   })
 
-  it('put peerInfo', (done) => {
+  it('put peerInfo', () => {
     pb.put(p1)
     pb.put(p2)
     pb.put(p3)
-
-    done()
   })
 
-  it('get all peerInfo', (done) => {
+  it('get all peerInfo', () => {
     const peers = pb.getAll()
     expect(Object.keys(peers).length).to.equal(3)
-    done()
   })
 
-  it('getByB58String', (done) => {
+  it('get', () => {
+    const peer = pb.get(p1.id)
+    expect(peer).to.deep.equal(p1)
+  })
+
+  it('getByB58String', () => {
     const p1Id = p1.id.toB58String()
     const peer = pb.getByB58String(p1Id)
     expect(peer).to.deep.equal(p1)
-    done()
   })
 
   it('getByB58String non existent', (done) => {
@@ -72,11 +72,10 @@ describe('peer-book', function () {
     }
   })
 
-  it('getByMultihash', (done) => {
+  it('getByMultihash', () => {
     const p1Id = p1.id.toBytes()
     const peer = pb.getByMultihash(p1Id)
     expect(peer).to.deep.equal(p1)
-    done()
   })
 
   it('getByMultihash non existent', (done) => {
@@ -110,21 +109,27 @@ describe('peer-book', function () {
     }
   })
 
-  it('add repeated Id, merge info', (done) => {
+  it('add repeated Id, merge info', () => {
     const peerA = new PeerInfo(p3.id)
     peerA.multiaddr.add(new Multiaddr('/ip4/127.0.0.1/tcp/4001'))
     pb.put(peerA)
     const peerB = pb.getByB58String(p3.id.toB58String())
     expect(peerA).to.deep.equal(peerB)
-    done()
   })
 
-  it('add repeated Id, replace info', (done) => {
+  it('add repeated Id, replace info', () => {
     const peerA = new PeerInfo(p3.id)
     peerA.multiaddr.add(new Multiaddr('/ip4/188.0.0.1/tcp/5001'))
     pb.put(peerA, true)
     const peerB = pb.getByB58String(p3.id.toB58String())
     expect(peerA).to.deep.equal(peerB)
-    done()
+  })
+
+  it('getAddrs', () => {
+    const pb = new PeerBook()
+    const peer = new PeerInfo(p3.id)
+    peer.multiaddr.add(new Multiaddr('/ip4/127.0.0.1/tcp/1234'))
+    pb.put(peer)
+    expect(pb.getAddrs(p3.id)).to.be.eql(peer.multiaddrs)
   })
 })
