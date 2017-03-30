@@ -2,25 +2,30 @@
 
 const bs58 = require('bs58')
 
-module.exports = PeerBook
-
-function PeerBook () {
-  if (!(this instanceof PeerBook)) {
-    return new PeerBook()
+class PeerBook {
+  constructor () {
+    this._peers = {}
   }
 
-  const peers = {}
-
-  this.put = (peerInfo, replace) => {
-    if (peers[peerInfo.id.toB58String()] && !replace) {
-      // peerInfo.replace merges by default
-      peers[peerInfo.id.toB58String()].multiaddr.replace([], peerInfo.multiaddrs)
+  /**
+   * Stores a peerInfo, if already exist, only adds the multiaddrs
+   *
+   * @param {PeerInfo} peerInfo
+   * @param {replace} boolean
+   * @returns {null}
+   */
+  put (peerInfo, replace) {
+    if (this._peers[peerInfo.id.toB58String()] && !replace) {
+      // peerInfo.replace merges by default if none to replace are passed
+      this._peers[peerInfo.id.toB58String()]
+        .multiaddrs.replace([], peerInfo.multiaddrs.toArray())
     }
-    peers[peerInfo.id.toB58String()] = peerInfo
+
+    this._peers[peerInfo.id.toB58String()] = peerInfo
   }
 
-  this.getAll = () => {
-    return peers
+  getAll () {
+    return this._peers
   }
 
   /**
@@ -29,30 +34,31 @@ function PeerBook () {
    * @param {PeerId} id
    * @returns {PeerInfo}
    */
-  this.get = (id) => {
+  get (id) {
     return this.getByB58String(id.toB58String())
   }
 
-  this.getByB58String = (b58String) => {
-    const peerInfo = peers[b58String]
+  getByB58String (b58String) {
+    const peerInfo = this._peers[b58String]
+
     if (peerInfo) {
       return peerInfo
     }
     throw new Error('PeerInfo not found')
   }
 
-  this.getByMultihash = (multihash) => {
+  getByMultihash (multihash) {
     const b58multihash = bs58.encode(multihash).toString()
     return this.getByB58String(b58multihash)
   }
 
-  this.removeByB58String = (b58String) => {
-    if (peers[b58String]) {
-      delete peers[b58String]
+  removeByB58String (b58String) {
+    if (this._peers[b58String]) {
+      delete this._peers[b58String]
     }
   }
 
-  this.removeByMultihash = (multihash) => {
+  removeByMultihash (multihash) {
     const b58multihash = bs58.encode(multihash).toString()
     this.removeByB58String(b58multihash)
   }
@@ -63,10 +69,10 @@ function PeerBook () {
    * @param {PeerId} id
    * @returns {Array<Multiaddr>}
    */
-  this.getAddrs = (id) => {
+  getAddrs (id) {
     const info = this.get(id)
     return info.multiaddrs
   }
-
-  // TODO serialize PeerBook into MerkleDAG Objects
 }
+
+module.exports = PeerBook
