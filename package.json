@@ -45,7 +45,7 @@
     "chai": "^3.5.0",
     "dirty-chai": "^1.2.2",
     "multiaddr": "^2.2.3",
-    "peer-info": "~0.8.5",
+    "peer-info": "~0.9.0",
     "pre-commit": "^1.2.2"
   },
   "contributors": [
