@@ -146,6 +146,6 @@ describe('peer-book', () => {
     peer.multiaddrs.add(new Multiaddr('/ip4/127.0.0.1/tcp/1234'))
 
     pb.put(peer)
-    expect(pb.getMultiaddrs(p3.id)).to.be.eql(peer.multiaddrs)
+    expect(pb.getMultiaddrs(p3.id)).to.be.eql(peer.multiaddrs.toArray())
   })
 })
