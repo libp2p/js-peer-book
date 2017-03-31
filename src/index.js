@@ -38,7 +38,7 @@ class PeerBook {
    * Stores a peerInfo, if already exist, merges the new into the old.
    *
    * @param {PeerInfo} peerInfo
-   * @param {replace} boolean
+   * @param {Boolean} replace
    * @returns {PeerInfo}
    */
   put (peerInfo, replace) {
@@ -76,7 +76,7 @@ class PeerBook {
   /**
    * Get the info to the given PeerId, PeerInfo or b58Str id
    *
-   * @param {PeerId} id
+   * @param {PeerId} peer
    * @returns {PeerInfo}
    */
   get (peer) {
@@ -98,15 +98,9 @@ class PeerBook {
     return Object.keys(this._peers).map((b58Str) => this._peers[b58Str])
   }
 
-  /**
-   * Return all multiaddrs for a given PeerId.
-   *
-   * @param {PeerId, PeerInfo, Multihash, B58Str} id
-   * @returns {Array<Multiaddr>}
-   */
   getMultiaddrs (peer) {
     const info = this.get(peer)
-    return info.multiaddrs
+    return info.multiaddrs.toArray()
   }
 
   remove (peer) {
