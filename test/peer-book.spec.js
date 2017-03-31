@@ -8,11 +8,12 @@ chai.use(dirtyChai)
 const Multiaddr = require('multiaddr')
 const PeerInfo = require('peer-info')
 const async = require('async')
+const utils = require('./utils')
+const createPeerInfo = utils.createPeerInfo
 
 const PeerBook = require('../src')
 
-describe('peer-book', function () {
-  this.timeout(50000)
+describe('peer-book', () => {
   let pb
   let p1
   let p2
@@ -21,10 +22,22 @@ describe('peer-book', function () {
 
   before((done) => {
     async.parallel([
-      (cb) => PeerInfo.create(cb),
-      (cb) => PeerInfo.create(cb),
-      (cb) => PeerInfo.create(cb),
-      (cb) => PeerInfo.create(cb)
+      (cb) => createPeerInfo([
+        '/tcp/1000',
+        '/tcp/1001'
+      ], cb),
+      (cb) => createPeerInfo([
+        '/tcp/2000',
+        '/tcp/2001'
+      ], cb),
+      (cb) => createPeerInfo([
+        '/tcp/3000',
+        '/tcp/3001'
+      ], cb),
+      (cb) => createPeerInfo([
+        '/tcp/4000',
+        '/tcp/4001'
+      ], cb)
     ], (err, infos) => {
       if (err) {
         return done(err)
@@ -44,44 +57,48 @@ describe('peer-book', function () {
     expect(pb).to.exist()
   })
 
-  it('put peerInfo', () => {
-    pb.put(p1)
-    pb.put(p2)
-    pb.put(p3)
+  it('.put', () => {
+    expect(pb.put(p1)).to.eql(p1)
+    expect(pb.put(p2)).to.eql(p2)
+    expect(pb.put(p3)).to.eql(p3)
   })
 
-  it('get all peerInfo', () => {
+  it('.getAll', () => {
     const peers = pb.getAll()
     expect(Object.keys(peers).length).to.equal(3)
   })
 
-  it('get', () => {
+  it('.getAllArray', () => {
+    expect(pb.getAllArray()).to.have.length(3)
+  })
+
+  it('.get by PeerId', () => {
     const peer = pb.get(p1.id)
-    expect(peer).to.deep.equal(p1)
+    expect(peer).to.eql(p1)
   })
 
-  it('getByB58String', () => {
-    const p1Id = p1.id.toB58String()
-    const peer = pb.getByB58String(p1Id)
-    expect(peer).to.deep.equal(p1)
+  it('.get by B58String ', () => {
+    const b58Str = p1.id.toB58String()
+    const peer = pb.get(b58Str)
+    expect(peer).to.eql(p1)
   })
 
-  it('getByB58String non existent', (done) => {
+  it('.get by B58String non existent', (done) => {
     try {
-      pb.getByB58String(p4.id.toB58String())
+      pb.get(p4.id.toB58String())
     } catch (err) {
       expect(err).to.exist()
       done()
     }
   })
 
-  it('getByMultihash', () => {
-    const p1Id = p1.id.toBytes()
-    const peer = pb.getByMultihash(p1Id)
-    expect(peer).to.deep.equal(p1)
+  it('.get by Multihash', () => {
+    const mh = p1.id.toBytes()
+    const peer = pb.get(mh)
+    expect(peer).to.eql(p1)
   })
 
-  it('getByMultihash non existent', (done) => {
+  it('.get by Multihash non existent', (done) => {
     try {
       pb.getByMultihash(p4.id.toBytes())
     } catch (err) {
@@ -90,49 +107,45 @@ describe('peer-book', function () {
     }
   })
 
-  it('removeByB58String', (done) => {
-    const p1Id = p1.id.toB58String()
-    pb.removeByB58String(p1Id)
-    try {
-      pb.getByB58String(p1Id)
-    } catch (err) {
-      expect(err).to.exist()
-      done()
-    }
+  it('.remove by B58String', () => {
+    const b58Str = p1.id.toB58String()
+
+    pb.remove(b58Str)
+    expect(pb.has(b58Str)).to.equal(false)
   })
 
-  it('removeByMultihash', (done) => {
-    const p1Id = p1.id.toBytes()
-    pb.removeByMultihash(p1Id)
-    try {
-      pb.getByMultihash(p1Id)
-    } catch (err) {
-      expect(err).to.exist()
-      done()
-    }
+  it('.remove by Multihash', () => {
+    const mh = p1.id.toBytes()
+
+    pb.remove(mh)
+    expect(pb.has(mh)).to.equal(false)
   })
 
-  it('add repeated Id, merge info', () => {
-    const peerA = new PeerInfo(p3.id)
-    peerA.multiaddr.add(new Multiaddr('/ip4/127.0.0.1/tcp/4001'))
-    pb.put(peerA)
-    const peerB = pb.getByB58String(p3.id.toB58String())
-    expect(peerA).to.deep.equal(peerB)
+  it('.put repeated Id, merge info', () => {
+    const peer3A = new PeerInfo(p3.id)
+    peer3A.multiaddrs.add(new Multiaddr('/ip4/127.0.0.1/tcp/4001'))
+
+    pb.put(peer3A)
+    const peer3B = pb.get(p3.id.toBytes())
+
+    expect(peer3B.multiaddrs.toArray()).to.have.length(3)
   })
 
-  it('add repeated Id, replace info', () => {
-    const peerA = new PeerInfo(p3.id)
-    peerA.multiaddr.add(new Multiaddr('/ip4/188.0.0.1/tcp/5001'))
-    pb.put(peerA, true)
-    const peerB = pb.getByB58String(p3.id.toB58String())
-    expect(peerA).to.deep.equal(peerB)
+  it('.put repeated Id, replace info', () => {
+    const peer3A = new PeerInfo(p3.id)
+    peer3A.multiaddrs.add(new Multiaddr('/ip4/188.0.0.1/tcp/5001'))
+
+    pb.put(peer3A, true)
+    const peer3B = pb.get(p3.id.toB58String())
+    expect(peer3A.multiaddrs.toArray()).to.eql(peer3B.multiaddrs.toArray())
   })
 
-  it('getAddrs', () => {
+  it('.getMultiaddrs', () => {
     const pb = new PeerBook()
     const peer = new PeerInfo(p3.id)
-    peer.multiaddr.add(new Multiaddr('/ip4/127.0.0.1/tcp/1234'))
+    peer.multiaddrs.add(new Multiaddr('/ip4/127.0.0.1/tcp/1234'))
+
     pb.put(peer)
-    expect(pb.getAddrs(p3.id)).to.be.eql(peer.multiaddrs)
+    expect(pb.getMultiaddrs(p3.id)).to.be.eql(peer.multiaddrs)
   })
 })
