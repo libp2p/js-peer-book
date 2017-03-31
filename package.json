@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/diasdavid/js-peer-book.git"
+    "url": "git+https://github.com/libp2p/js-peer-book.git"
   },
   "pre-commit": [
     "lint",
@@ -33,11 +33,13 @@
   "author": "David Dias <daviddias@ipfs.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/diasdavid/js-peer-book/issues"
+    "url": "https://github.com/libp2p/js-peer-book/issues"
   },
-  "homepage": "https://github.com/diasdavid/js-peer-book#readme",
+  "homepage": "https://github.com/libp2p/js-peer-book#readme",
   "dependencies": {
-    "bs58": "^4.0.0"
+    "bs58": "^4.0.0",
+    "peer-id": "^0.8.6",
+    "peer-info": "^0.9.1"
   },
   "devDependencies": {
     "aegir": "^11.0.1",
@@ -45,7 +47,6 @@
     "chai": "^3.5.0",
     "dirty-chai": "^1.2.2",
     "multiaddr": "^2.3.0",
-    "peer-info": "~0.9.0",
     "pre-commit": "^1.2.2"
   },
   "contributors": [
