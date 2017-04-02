@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "aegir": "^11.0.1",
-    "async": "^2.2.0",
+    "async": "^2.3.0",
     "chai": "^3.5.0",
     "dirty-chai": "^1.2.2",
     "multiaddr": "^2.3.0",
