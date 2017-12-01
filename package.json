@@ -7,16 +7,16 @@
     "test": "test"
   },
   "scripts": {
-    "lint": "aegir-lint",
-    "build": "aegir-build",
-    "test": "aegir-test",
-    "test:node": "aegir-test node",
-    "test:browser": "aegir-test browser",
-    "release": "aegir-release",
-    "release-minor": "aegir-release --type minor",
-    "release-major": "aegir-release --type major",
-    "coverage": "aegir-coverage",
-    "coverage-publish": "aegir-coverage publish"
+    "lint": "aegir lint",
+    "build": "aegir build",
+    "test": "aegir test",
+    "test:node": "aegir test -t node",
+    "test:browser": "aegir test -t browser",
+    "release": "aegir release",
+    "release-minor": "aegir release --type minor",
+    "release-major": "aegir release --type major",
+    "coverage": "aegir coverage",
+    "coverage-publish": "aegir coverage --provider coveralls"
   },
   "repository": {
     "type": "git",
@@ -38,12 +38,12 @@
   "homepage": "https://github.com/libp2p/js-peer-book#readme",
   "dependencies": {
     "bs58": "^4.0.1",
-    "peer-id": "^0.10.1",
-    "peer-info": "^0.11.0"
+    "peer-id": "^0.10.3",
+    "peer-info": "^0.11.3"
   },
   "devDependencies": {
-    "aegir": "^11.0.2",
-    "async": "^2.5.0",
+    "aegir": "^12.2.0",
+    "async": "^2.6.0",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",
     "multiaddr": "^3.0.1",
