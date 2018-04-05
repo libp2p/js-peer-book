@@ -1,6 +1,6 @@
 {
   "name": "peer-book",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Peer Store for libp2p and IPFS",
   "main": "src/index.js",
   "directories": {
