@@ -38,15 +38,15 @@
   "homepage": "https://github.com/libp2p/js-peer-book#readme",
   "dependencies": {
     "bs58": "^4.0.1",
-    "peer-id": "^0.10.5",
-    "peer-info": "^0.11.6"
+    "peer-id": "^0.10.7",
+    "peer-info": "^0.14.0"
   },
   "devDependencies": {
-    "aegir": "^12.4.0",
+    "aegir": "^13.0.6",
     "async": "^2.6.0",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",
-    "multiaddr": "^3.0.2",
+    "multiaddr": "^4.0.0",
     "pre-commit": "^1.2.2"
   },
   "contributors": [
