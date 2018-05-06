@@ -12,21 +12,29 @@ Peer Book JavaScript Implementation
 
 > Peer Store for libp2p and IPFS
 
-# Installation
+## Lead Maintainer
 
-## npm
+[Pedro Teixeira](https://github.com/pgte)
+
+## Table of Contents
+
+soon™
+
+## Installation
+
+### npm
 
 ```sh
 > npm i peer-book
 ```
 
-## Node.JS, Browserify, Webpack
+### Node.JS, Browserify, Webpack
 
 ```JavaScript
 const PeerBook = require('peer-book')
 ```
 
-## Browser: `<script>` Tag
+### Browser: `<script>` Tag
 
 Loading this module through a script tag will make the `PeerBook` obj available in the global namespace.
 
