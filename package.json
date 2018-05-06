@@ -3,9 +3,7 @@
   "version": "0.7.0",
   "description": "Peer Store for libp2p and IPFS",
   "main": "src/index.js",
-  "directories": {
-    "test": "test"
-  },
+  "leadMaintainer": "Pedro Teixeira <i@pgte.me>",
   "scripts": {
     "lint": "aegir lint",
     "build": "aegir build",
@@ -22,7 +20,7 @@
     "type": "git",
     "url": "git+https://github.com/libp2p/js-peer-book.git"
   },
-  "pre-commit": [
+  "pre-push": [
     "lint",
     "test"
   ],
@@ -30,7 +28,6 @@
     "IPFS",
     "libp2p"
   ],
-  "author": "David Dias <daviddias@ipfs.io>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/libp2p/js-peer-book/issues"
@@ -46,8 +43,7 @@
     "async": "^2.6.0",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",
-    "multiaddr": "^5.0.0",
-    "pre-commit": "^1.2.2"
+    "multiaddr": "^5.0.0"
   },
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",
