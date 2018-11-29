@@ -1,6 +1,6 @@
 {
   "name": "peer-book",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Peer Store for libp2p and IPFS",
   "main": "src/index.js",
   "leadMaintainer": "Pedro Teixeira <i@pgte.me>",
@@ -48,6 +48,8 @@
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",
     "Friedel Ziegelmayer <dignifiedquire@gmail.com>",
+    "Pedro Teixeira <i@pgte.me>",
+    "Vasco Santos <vasco.santos@moxy.studio>",
     "Victor Bjelkholm <victorbjelkholm@gmail.com>",
     "greenkeeperio-bot <support@greenkeeper.io>",
     "npmcdn-to-unpkg-bot <npmcdn-to-unpkg-bot@users.noreply.github.com>"
