@@ -1,3 +1,8 @@
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/libp2p/js-peer-book/compare/v0.8.0...v0.9.0) (2018-11-29)
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/libp2p/js-peer-book/compare/v0.7.0...v0.8.0) (2018-05-07)
 
