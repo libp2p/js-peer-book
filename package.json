@@ -24,6 +24,10 @@
     "lint",
     "test"
   ],
+  "files": [
+    "src",
+    "dist"
+  ],
   "keywords": [
     "IPFS",
     "libp2p"
@@ -35,11 +39,11 @@
   "homepage": "https://github.com/libp2p/js-peer-book#readme",
   "dependencies": {
     "bs58": "^4.0.1",
-    "peer-id": "~0.12.0",
-    "peer-info": "~0.15.0"
+    "peer-id": "libp2p/js-peer-id#feat/bundle-size",
+    "peer-info": "libp2p/js-peer-info#feat/bundle-size"
   },
   "devDependencies": {
-    "aegir": "^17.1.1",
+    "aegir": "github:ipfs/aegir#feat/make-exp-build-test-default",
     "async": "^2.6.1",
     "chai": "^4.2.0",
     "dirty-chai": "^2.0.1",
