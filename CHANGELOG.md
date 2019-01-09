@@ -1,3 +1,13 @@
+<a name="0.9.1"></a>
+## [0.9.1](https://github.com/libp2p/js-peer-book/compare/v0.9.0...v0.9.1) (2019-01-09)
+
+
+### Bug Fixes
+
+* reduce bundle size ([808ade1](https://github.com/libp2p/js-peer-book/commit/808ade1))
+
+
+
 <a name="0.9.0"></a>
 # [0.9.0](https://github.com/libp2p/js-peer-book/compare/v0.8.0...v0.9.0) (2018-11-29)
 
