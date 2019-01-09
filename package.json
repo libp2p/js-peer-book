@@ -1,6 +1,6 @@
 {
   "name": "peer-book",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Peer Store for libp2p and IPFS",
   "main": "src/index.js",
   "leadMaintainer": "Pedro Teixeira <i@pgte.me>",
@@ -52,6 +52,7 @@
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",
     "Friedel Ziegelmayer <dignifiedquire@gmail.com>",
+    "Hugo Dias <hugomrdias@gmail.com>",
     "Pedro Teixeira <i@pgte.me>",
     "Vasco Santos <vasco.santos@moxy.studio>",
     "Victor Bjelkholm <victorbjelkholm@gmail.com>",
