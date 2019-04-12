@@ -43,11 +43,11 @@
     "peer-info": "~0.15.1"
   },
   "devDependencies": {
-    "aegir": "^18.0.3",
-    "async": "^2.6.1",
+    "aegir": "^18.2.2",
+    "async": "^2.6.2",
     "chai": "^4.2.0",
     "dirty-chai": "^2.0.1",
-    "multiaddr": "^6.0.3"
+    "multiaddr": "^6.0.6"
   },
   "contributors": [
     "David Dias <daviddias.p@gmail.com>",
