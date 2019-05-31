@@ -95,7 +95,7 @@ class PeerBook {
   }
 
   getAllArray () {
-    return Object.keys(this._peers).map((b58Str) => this._peers[b58Str])
+    return Object.values(this._peers)
   }
 
   getMultiaddrs (peer) {
