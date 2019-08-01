@@ -6,40 +6,40 @@ const PeerInfo = require('peer-info')
 const EventEmitter = require('events')
 
 //LatencyEWMASmoothing governsm the decay of the EWMA (the speed at which it changes).
-//This must be a	value between (0-1). 1 is 100% change, 0 is no change.
+//This must be a value between (0-1). 1 is 100% change, 0 is no change.
 
 var LatencyEWMASmoothing = 0.1
 
 class Lock {
-	constructor() {
-		this._locked = false;
-		this._ee = new EventEmitter();
-	}
+  constructor() {
+    this._locked = false;
+    this._ee = new EventEmitter();
+  }
 
-	acquire() {
+  acquire() {
     return new Promise(resolve => {
-			if (!this._locked) {
-				this.__locked = true;
-				return resolve();
-			}
-		});
+      if (!this._locked) {
+        this.__locked = true;
+        return resolve();
+      }
+    });
 
-		const tryAcquire = () => {
-			if (!this._locked) {
-				this.__locked = true;
-				this.__ee.removeListener('release', tryAcquire);
-				return resolve();
-			}
-		};
-		this.__ee.on('release', tryAcquire);
-		}
+   const tryAcquire = () => {
+     if (!this._locked) {
+       this.__locked = true;
+       this.__ee.removeListener('release', tryAcquire);
+         return resolve();
+       }
+     };
+     this.__ee.on('release', tryAcquire);
+  }
 
-	release() {
-		this.__locked = false;
-		setImmediate(() => this.__ee.emit('release'));
-	}
-	}
+  release() {
+    this.__locked = false;
+    setImmediate(() => this.__ee.emit('release'));
+  }
 }
+
 
 function getB58Str (peer) {
   let b58Str
@@ -148,21 +148,21 @@ class PeerBook {
     }
   }
 
-	//Record latency information
-	recordLatencyInfo (peer, duration) {
-	  if (LatencyEWMASmoothing > 1 || LatencyEWMASmoothing < 0) {
+  //Record latency information
+  recordLatencyInfo (peer, duration) {
+    if (LatencyEWMASmoothing > 1 || LatencyEWMASmoothing < 0) {
       LatencyEWMASmoothing = 0.1;
-		}
-
-		latmu.lock();
-		let found = metrics.latmap[p];
-		if (!found) {
-			metrics.latmap[p] = next;
-		} else {
-			next = ((1.0 - LatencyEWMASmoothing) * ewmaf) + (LatencyEWMASmoothing * next)
-		}
-		metrics.latmu.release();
-	}	
+    }
+    let next = ((1.0 - LatencyEWMASmoothing) * ewmaf) + (LatencyEWMASmoothing * next);
+    metrics.release();
+    let found = metrics.latmap[i];
+    if (!found) {
+      metrics.latmap[i] = next;
+    } else {
+      next = ((1.0 - LatencyEWMASmoothing) * ewmaf) + (LatencyEWMASmoothing * next);
+    }
+    metrics.latmu.release();
+  }
 }
 
 module.exports = PeerBook
