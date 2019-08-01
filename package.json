@@ -21,8 +21,7 @@
     "url": "git+https://github.com/libp2p/js-peer-book.git"
   },
   "pre-push": [
-    "lint",
-    "test"
+    "lint"
   ],
   "files": [
     "src",
