@@ -46,13 +46,21 @@ Loading this module through a script tag will make the `PeerBook` obj available 
 
 # Usage
 
-### `put`
+### `put(peerInfo)`
 
-### `get`
+Adds the peerInfo using it's peerId to the peerBook
 
-### `getByB58String`
+### `get(peerIdLike)`
 
-### `getByMultihash`
+Gets the peerInfo using it's peerId
+
+`peerIdLike` can be:
+  - A base58 peerId string
+    - Example: `QmfHZLGRxYoF87esc98DetgKwzMhE4gumCC9kq39EBrueM`
+  - A peerId buffer
+    - Example: `<Buffer 12 20 fb cb db 25 57 c9 4c 7d 73 c6 d9 bb 83 cc e6 4d 7a de 66 59 12 94 bc 8d f3 95 5d 10 e6 ee ce 2e>`
+  - A [PeerId](npm.im/peer-id) object
+  - A [PeerInfo](npm.im/peer-info) object
 
 # License
 
