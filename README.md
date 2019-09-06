@@ -46,9 +46,13 @@ Loading this module through a script tag will make the `PeerBook` obj available 
 
 # Usage
 
-### `put(peerInfo)`
+### `put(peerInfo, replace)`
 
 Adds the peerInfo using it's peerId to the peerBook
+
+If the peerInfo for that id was already added, the addresses are going to be merged
+
+If `replace` is set to true, then the peerInfo will be completly overwritten by the new one, without keeping the previous addresses.
 
 ### `get(peerIdLike)`
 
@@ -59,8 +63,8 @@ Gets the peerInfo using it's peerId
     - Example: `QmfHZLGRxYoF87esc98DetgKwzMhE4gumCC9kq39EBrueM`
   - A peerId buffer
     - Example: `<Buffer 12 20 fb cb db 25 57 c9 4c 7d 73 c6 d9 bb 83 cc e6 4d 7a de 66 59 12 94 bc 8d f3 95 5d 10 e6 ee ce 2e>`
-  - A [PeerId](https://npm.im/peer-id) object
-  - A [PeerInfo](https://npm.im/peer-info) object
+  - A [PeerId](https://www.npmjs.com/package/peer-id#api) object
+  - A [PeerInfo](https://www.npmjs.com/package/peer-info#api) object
 
 # License
 
