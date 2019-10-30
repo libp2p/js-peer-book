@@ -20,6 +20,8 @@ describe('peer-book', () => {
   let p3
   let p4
 
+  let p1fullAddr
+
   before((done) => {
     async.parallel([
       (cb) => createPeerInfo([
@@ -48,6 +50,8 @@ describe('peer-book', () => {
       p3 = infos[2]
       p4 = infos[3]
 
+      p1fullAddr = p1.multiaddrs.toArray()[0].encapsulate('/ipfs/' + p1.id.toB58String())
+
       done()
     })
   })
@@ -74,6 +78,16 @@ describe('peer-book', () => {
 
   it('.get by PeerId', () => {
     const peer = pb.get(p1.id)
+    expect(peer).to.eql(p1)
+  })
+
+  it('.get by multiaddr string', () => {
+    const peer = pb.get(String(p1fullAddr))
+    expect(peer).to.eql(p1)
+  })
+
+  it('.get by multiaddr', () => {
+    const peer = pb.get(p1fullAddr)
     expect(peer).to.eql(p1)
   })
 

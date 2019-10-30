@@ -3,18 +3,25 @@
 const bs58 = require('bs58')
 const PeerId = require('peer-id')
 const PeerInfo = require('peer-info')
+const Multiaddr = require('multiaddr')
 
 function getB58Str (peer) {
   let b58Str
 
   if (typeof peer === 'string') {
-    b58Str = peer
+    if (peer.startsWith('/')) {
+      b58Str = Multiaddr(peer).getPeerId()
+    } else {
+      b58Str = peer
+    }
   } else if (Buffer.isBuffer(peer)) {
     b58Str = bs58.encode(peer).toString()
   } else if (PeerId.isPeerId(peer)) {
     b58Str = peer.toB58String()
   } else if (PeerInfo.isPeerInfo(peer)) {
     b58Str = peer.id.toB58String()
+  } else if (Multiaddr.isMultiaddr(peer)) {
+    b58Str = peer.getPeerId()
   } else {
     throw new Error('not valid PeerId or PeerInfo, or B58Str')
   }
