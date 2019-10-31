@@ -1,3 +1,19 @@
+<a name="0.9.2"></a>
+## [0.9.2](https://github.com/libp2p/js-peer-book/compare/v0.8.0...v0.9.2) (2019-10-31)
+
+
+### Bug Fixes
+
+* reduce bundle size ([808ade1](https://github.com/libp2p/js-peer-book/commit/808ade1))
+* **docs:** update to new get function ([#46](https://github.com/libp2p/js-peer-book/issues/46)) ([f2f4add](https://github.com/libp2p/js-peer-book/commit/f2f4add))
+
+
+### Features
+
+* add get by multiaddrs ([#47](https://github.com/libp2p/js-peer-book/issues/47)) ([1d86918](https://github.com/libp2p/js-peer-book/commit/1d86918))
+
+
+
 <a name="0.9.1"></a>
 ## [0.9.1](https://github.com/libp2p/js-peer-book/compare/v0.9.0...v0.9.1) (2019-01-09)
 
